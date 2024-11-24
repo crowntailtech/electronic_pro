@@ -1,0 +1,372 @@
+/* General Page Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #eef2f3, #8e9eab);
+    color: #333;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #00416a;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ffdd40;
+}
+
+.nav-links {
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #ffdd40;
+    color: #00416a;
+}
+
+/* Container Styles */
+.dashboard-container, .home-container, .order-container {
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 20px;
+    text-align: center;
+}
+
+.dashboard-container h1,
+.home-container h1,
+.order-container h1 {
+    color: #00416a;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+/* Grid Styles */
+.product-grid, .order-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Card Styles */
+.product-card, .order-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.product-card:hover, .order-card:hover {
+    transform: scale(1.05);
+}
+
+.product-card h3, .order-card h3 {
+    margin: 0 0 10px;
+    color: #00416a;
+    font-size: 1.5em;
+}
+
+.product-card p, .order-card p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 1em;
+}
+
+.product-card button, .order-card button {
+    padding: 10px 15px;
+    background-color: #00416a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-card button:hover, .order-card button:hover {
+    background-color: #ffdd40;
+    color: #00416a;
+}
+
+/* Form Styles */
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    font-size: 0.9em;
+    padding: 6px 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    height: 80px;
+}
+
+/* Button Styles */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0073e6;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005bb5;
+}
+
+/* Messages */
+.no-orders, .error-message {
+    font-size: 1.2em;
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.no-orders {
+    color: #555;
+}
+
+/* Specific Error Message under Add Product */
+#error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 10px;
+    text-align: left;
+}
+
+
+
+
+
+/* Add Product Card */
+.add-product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+    text-align: center;
+}
+
+.add-product-card:hover {
+    transform: scale(1.05);
+    background-color: #f9f9f9;
+}
+
+.add-product-card .add-icon {
+    font-size: 3em;
+    color: #00416a;
+    font-weight: bold;
+}
+
+.add-product-card p {
+    margin-top: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Product Card */
+.product-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Align content inside the card to the center */
+    width: 300px; /* Set a consistent width for all product cards */
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-card h3 {
+    margin: 0 0 10px;
+    color: #00416a;
+}
+
+.product-card p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.product-card button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #00416a;
+    color: white;
+    border: none;
+    border-radius: 1px;
+    font-size: 0.9em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.product-card button:hover {
+    background-color: #ffdd40;
+    color: #00416a;
+}
+
+/* Form Button Container */
+.form-button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.form-button-container button {
+    width: 48%; /* Each button takes 48% of the container width to provide spacing */
+    padding: 10px;
+    font-size: 1em;
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-button-container button:hover {
+    background-color: #005bb5;
+}
+
+.form-button-container .cancel-btn {
+    background-color: #e60000; /* Red color for Cancel button */
+}
+
+.form-button-container .cancel-btn:hover {
+    background-color: #b30000; /* Darker red on hover */
+}
+
+/* Form Styles */
+.form-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    font-size: 1em;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    height: 80px;
+    resize: none;
+}
+
+.form-button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.form-button-container button {
+    width: 48%;
+    padding: 10px;
+    font-size: 1em;
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-button-container button:hover {
+    background-color: #005bb5;
+}
+
+.form-button-container .cancel-btn {
+    background-color: #e60000;
+}
+
+.form-button-container .cancel-btn:hover {
+    background-color: #b30000;
+}
+
+/* Product Card Image */
+.product-card img {
+    max-width: 100%; /* Ensure the image fits within the container */
+    height: 200px; /* Set a fixed height for images */
+    object-fit: cover; /* Crop the image to fit without distortion */
+    border-radius: 8px;
+    margin-bottom: 12px;
+}

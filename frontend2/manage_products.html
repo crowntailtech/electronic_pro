@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Products</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="brand">MyStore</div>
+        <ul class="nav-links">
+            <li id="greeting">Welcome, Seller</li>
+            <li><a href="seller_dashboard.html">Order History</a></li>
+            <li><a href="#" onclick="logout()">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="dashboard-container">
+        <h1>Manage Your Products</h1>
+
+        <!-- Add New Product Card -->
+        <div class="product-grid">
+            <div class="product-card add-product-card" onclick="showAddProductForm()">
+                <div class="add-icon">+</div>
+                <p>Add New Product</p>
+            </div>
+        </div>
+
+        <!-- Add Product Form -->
+        <div id="add-product-form" class="form-container" style="display: none;">
+            <h2>Add New Product</h2>
+            <form id="product-form" enctype="multipart/form-data">
+                <label for="product-name">Product Name</label>
+                <input type="text" id="product-name" required>
+        
+                <label for="product-description">Description</label>
+                <textarea id="product-description" required></textarea>
+        
+                <label for="product-price">Price</label>
+                <input type="number" id="product-price" required step="0.01">
+        
+                <label for="product-stock">Stock</label>
+                <input type="number" id="product-stock" required>
+
+                <label>Current Product Image</label>
+                <div id="existing-image-container" style="display: none;">
+                    <img id="existing-image" src="" alt="Existing Product Image" style="max-width: 150px; margin-bottom: 10px;">
+                </div>                
+        
+                <label for="product-image">Product Image</label>
+                <input type="file" id="product-image" accept="image/*">
+        
+                <!-- Buttons positioned in a flex container -->
+                <div class="form-button-container">
+                    <button type="submit">Save Product</button>
+                    <button type="button" class="cancel-btn" onclick="hideAddProductForm()">Cancel</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Product List -->
+        <div id="product-list" class="product-grid">
+            <!-- Product cards will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script src="manage_products.js"></script>
+</body>
+</html>

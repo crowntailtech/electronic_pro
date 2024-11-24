@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar"></div>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-container">
+        <h1>Welcome, Buyer</h1>
+        <p>Explore and shop for amazing products.</p>
+        <button onclick="window.location.href='products.html'">Browse Products</button>
+        <button onclick="window.location.href='order_history.html'">View Order History</button>
+    </div>
+
+    <script>
+        // Load Navbar
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+    </script>
+</body>
+</html>

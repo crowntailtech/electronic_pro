@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="brand">MyStore</div>
+        <ul class="nav-links">
+            <li id="greeting"></li>
+            <li><a href="manage_products.html">Manage Products</a></li>
+            <li><a onclick="logout()">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Dashboard Content -->
+    <div class="dashboard-container">
+        <h1>Seller Dashboard</h1>
+
+        <!-- Order History Section -->
+        <section id="order-history">
+            <h2>Order History</h2>
+            <div id="order-list" class="order-grid">
+                <!-- Order cards will be dynamically inserted here -->
+            </div>
+        </section>
+    </div>
+
+    <script src="seller_dashboard.js"></script>
+</body>
+</html>
