@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
+    const fullOrigin = window.location.origin;
+    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
     // Check authentication and user role
     const token = localStorage.getItem('access_token');
     if (!token) {
@@ -9,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         // Fetch user info to ensure the logged-in user is a seller
-        const userResponse = await fetch('http://localhost:8000/api/user/', {
+        const userResponse = await fetch(`${apiUrl}:8000/api/user/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -46,6 +48,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Fetch and display products
 async function loadProducts() {
+    const fullOrigin = window.location.origin;
+    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
     const token = localStorage.getItem('access_token');
     const productList = document.getElementById('product-list');
 
@@ -55,7 +59,7 @@ async function loadProducts() {
     }
 
     try {
-        const response = await fetch('http://localhost:8000/api/seller/products/', {
+        const response = await fetch(`${apiUrl}:8000/api/seller/products/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -97,11 +101,13 @@ async function loadProducts() {
 
 // Fetch and display order history
 async function loadOrderHistory() {
+    const fullOrigin = window.location.origin;
+    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
     const token = localStorage.getItem('access_token');
     const orderList = document.getElementById('order-list');
 
     try {
-        const response = await fetch('http://localhost:8000/api/seller/orders/', {
+        const response = await fetch(`${apiUrl}:8000/api/seller/orders/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

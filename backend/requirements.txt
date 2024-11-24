@@ -1,11 +1,13 @@
-Django==4.2.1                # Framework for the backend
-djangorestframework==3.14.0  # Django REST framework for APIs
-boto3==1.28.0                # AWS SDK for Python
-botocore==1.31.0             # Core library for AWS boto3
-django-cors-headers==3.14.0  # For handling CORS in Django
-pytz==2023.3                 # Timezone support for Django
-sqlparse==0.4.4              # SQL parser for Django
+Django                # Framework for the backend
+djangorestframework  # Django REST framework for APIs
+boto3                # AWS SDK for Python
+botocore             # Core library for AWS boto3
+django-cors-headers  # For handling CORS in Django
+pytz                 # Timezone support for Django
+sqlparse             # SQL parser for Django
 asgiref==3.7.2               # ASGI support for Django
-django-simple-jwt==5.2.2     # JWT-based authentication
-psycopg2-binary==2.9.7       # PostgreSQL adapter for Django
+djangorestframework-simplejwt    # JWT-based authentication
 gunicorn==20.1.0             # WSGI server for deployment
+mysqlclient
+django-storages[boto3]
+django-cors-headers

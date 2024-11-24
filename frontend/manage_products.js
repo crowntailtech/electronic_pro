@@ -1,5 +1,7 @@
 // Fetch and Display Products
 async function loadProducts() {
+    const fullOrigin = window.location.origin;
+    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
     const token = localStorage.getItem('access_token');
     const productList = document.getElementById('product-list');
 
@@ -15,7 +17,7 @@ async function loadProducts() {
     }
 
     try {
-        const response = await fetch('http://localhost:8000/api/seller/products/', {
+        const response = await fetch(`${apiUrl}:8000/api/seller/products/`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -65,6 +67,9 @@ async function loadProducts() {
 document.getElementById('product-form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
+    const fullOrigin = window.location.origin;
+    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
+
     const name = document.getElementById('product-name').value;
     const description = document.getElementById('product-description').value;
     const price = document.getElementById('product-price').value;
@@ -87,7 +92,7 @@ document.getElementById('product-form').addEventListener('submit', async functio
 
     try {
         const response = await fetch(
-            productId ? 'http://localhost:8000/api/seller/edit/' : 'http://localhost:8000/api/seller/add/',
+            productId ? `${apiUrl}:8000/api/seller/edit/` : `${apiUrl}:8000/api/seller/add/`,
             {
                 method: productId ? 'PUT' : 'POST', // PUT for editing, POST for adding
                 headers: {
@@ -114,11 +119,13 @@ document.getElementById('product-form').addEventListener('submit', async functio
 
 // Delete Product
 async function deleteProduct(productId) {
+    const fullOrigin = window.location.origin;
+    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
     const token = localStorage.getItem('access_token');
 
     if (confirm('Are you sure you want to delete this product?')) {
         try {
-            const response = await fetch('http://localhost:8000/api/seller/delete/', {
+            const response = await fetch(`${apiUrl}:8000/api/seller/delete/`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -162,6 +169,8 @@ function editProduct(productId, name, description, price, stock, image_url) {
 
 // Fetch Logged-In User Info
 async function setGreeting() {
+    const fullOrigin = window.location.origin;
+    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
     const token = localStorage.getItem('access_token');
 
     if (!token) {
@@ -171,7 +180,7 @@ async function setGreeting() {
     }
 
     try {
-        const response = await fetch('http://localhost:8000/api/user/', {
+        const response = await fetch(`${apiUrl}:8000/api/user/`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,

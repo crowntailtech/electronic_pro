@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Fetch and Display Orders
 async function loadOrders() {
+    const fullOrigin = window.location.origin;
+    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
     const token = localStorage.getItem('access_token');
     const orderList = document.getElementById('order-list');
 
@@ -17,7 +19,7 @@ async function loadOrders() {
     }
 
     try {
-        const response = await fetch('http://localhost:8000/api/orders/', {
+        const response = await fetch(`${apiUrl}:8000/api/orders/`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -62,6 +64,8 @@ async function loadOrders() {
 
 // Set Greeting for Navbar
 async function setGreeting() {
+    const fullOrigin = window.location.origin;
+    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
     const greetingElement = document.getElementById('greeting');
     const token = localStorage.getItem('access_token');
 
@@ -71,7 +75,7 @@ async function setGreeting() {
     }
 
     try {
-        const response = await fetch('http://localhost:8000/api/user/', {
+        const response = await fetch(`${apiUrl}:8000/api/user/`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,

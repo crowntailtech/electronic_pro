@@ -1,5 +1,7 @@
 document.getElementById('register-form').addEventListener('submit', async function (e) {
     e.preventDefault();
+    const fullOrigin = window.location.origin;
+    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
 
     const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
@@ -16,7 +18,7 @@ document.getElementById('register-form').addEventListener('submit', async functi
     };
 
     try {
-        const response = await fetch('http://localhost:8000/api/register/', {
+        const response = await fetch(`${apiUrl}:8000/api/register/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

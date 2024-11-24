@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
 // Handle Checkout Form Submission
 document.getElementById('checkout-form').addEventListener('submit', async function (e) {
     e.preventDefault();
+    const fullOrigin = window.location.origin;
+    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
 
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('id'); // Ensure productId is passed to the API
@@ -39,7 +41,7 @@ document.getElementById('checkout-form').addEventListener('submit', async functi
     }
 
     try {
-        const response = await fetch('http://localhost:8000/api/order/', {
+        const response = await fetch(`${apiUrl}:8000/api/order/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
