@@ -1,6 +1,7 @@
 import os
 import json
 import tempfile
+import boto3
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.contrib.auth import get_user_model, authenticate
@@ -10,6 +11,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.http import JsonResponse
 from .models import Product
+from electronic.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_STORAGE_BUCKET_NAME, AWS_REGION_NAME, SNS_TOPIC_ARN, SQS_QUEUE_URL
 from .aws import send_seller_notification, upload_to_s3, delete_from_s3, subscribe_seller_to_sns
 from .models import Product, Order
 
@@ -383,3 +385,54 @@ def seller_orders(request):
         for order in orders
     ]
     return JsonResponse({'orders': order_list}, safe=False)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_order_receipt(request, order_id):
+    """Fetch and generate a receipt for a specific order."""
+    try:
+        # Ensure the order belongs to the logged-in user
+        order = Order.objects.get(id=order_id, buyer=request.user)
+
+        # Prepare the payload for the Lambda function
+        payload = {
+            "order_id": order.id,
+            "product_name": order.product.name,
+            "quantity": order.quantity,
+            "total_price": f"${order.total_price:.2f}",  # Format as a currency string
+            "address": order.address,
+            "ordered_at": order.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+
+        # Set up the AWS Lambda client
+        lambda_client = boto3.client('lambda',
+                                     aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+                                     region_name=AWS_REGION_NAME
+                                     )
+
+        # Invoke the Lambda function synchronously
+        response = lambda_client.invoke(
+            FunctionName="make_receipt",
+            InvocationType="RequestResponse",
+            Payload=json.dumps(payload)
+        )
+
+        # Process the Lambda response
+        response_payload = json.loads(response['Payload'].read().decode('utf-8'))
+        print(response_payload)
+        
+        # Check if the Lambda function executed successfully
+        if 'statusCode' in response_payload and response_payload['statusCode'] == 200:
+            return JsonResponse(json.loads(response_payload['body']), safe=False)
+        else:
+            # Handle cases where the Lambda function returns an error
+            return JsonResponse({
+                'error': response_payload.get('error', 'Failed to generate receipt')
+            }, status=500)
+
+    except Order.DoesNotExist:
+        return JsonResponse({'error': 'Order not found'}, status=404)
+    except Exception as e:
+        print(e)
+        return JsonResponse({'error': str(e)}, status=500)

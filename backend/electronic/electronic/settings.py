@@ -199,8 +199,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # AWS S3 Settings
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_ACCESS_KEY_ID = 'xxxxxx'
-AWS_SECRET_ACCESS_KEY = 'xxxxxxxxx'
+AWS_ACCESS_KEY_ID = 'xxxxxxxxxxxxx'
+AWS_SECRET_ACCESS_KEY = 'xxxxxxxxxx'
 AWS_STORAGE_BUCKET_NAME = 'allproductsimages'
 AWS_REGION_NAME = 'us-east-1'
 SNS_TOPIC_ARN = 'arn:aws:sns:us-east-1:014498666344:SellerNotificationsTopic'
@@ -208,4 +208,21 @@ SQS_QUEUE_URL = 'https://sqs.us-east-1.amazonaws.com/014498666344/OrderQueue'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_REGION_NAME}.amazonaws.com'
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
 
-DEBUG=True
+# DEBUG=True
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}

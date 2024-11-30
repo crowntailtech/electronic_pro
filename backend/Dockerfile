@@ -28,5 +28,7 @@ COPY ./electronic/ /app/
 # Expose the application port
 EXPOSE 8000
 
+WORKDIR /app/electronic
+
 # Command to run the application
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "electronic.wsgi:application"]

@@ -44,6 +44,7 @@ async function loadOrders() {
                             <p><strong>Total Price:</strong> $${order.total_price}</p>
                             <p><strong>Address:</strong> ${order.address}</p>
                             <p><strong>Ordered At:</strong> ${new Date(order.created_at).toLocaleString()}</p>
+                            <button onclick="downloadReceipt(${order.id})">Download Receipt</button>
                         </div>
                     `;
                     orderList.innerHTML += orderCard;
@@ -58,6 +59,45 @@ async function loadOrders() {
     } catch (error) {
         console.error('Error loading orders:', error);
         orderList.innerHTML = `<p class="error-message">An error occurred. Please try again later.</p>`;
+    }
+}
+
+// Download Receipt Function
+async function downloadReceipt(orderId) {
+    const fullOrigin = window.location.origin;
+    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
+    const token = localStorage.getItem('access_token');
+
+    try {
+        const response = await fetch(`${apiUrl}:8000/api/orders/${orderId}/receipt/`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            const receiptUrl = data.receipt_url; // Assuming 'receipt_url' is the key in the response JSON
+            if (receiptUrl) {
+                const downloadLink = document.createElement('a');
+                downloadLink.href = receiptUrl;
+                downloadLink.setAttribute('target', '_blank');  // Open in a new tab
+                downloadLink.innerText = 'Download/View Receipt';
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            } else {
+                alert('Receipt URL not found.');
+            }
+        } else {
+            const errorData = await response.json(); // Assuming the server sends a readable error message
+            alert(`Failed to download receipt: ${errorData.message || 'Unknown error'}.`);
+        }
+    } catch (error) {
+        console.error('Error downloading receipt:', error);
+        alert('An error occurred while downloading the receipt.');
     }
 }
 

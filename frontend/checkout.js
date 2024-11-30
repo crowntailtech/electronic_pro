@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!productId) {
         alert('No product selected. Redirecting to home page.');
-        window.location.href = 'home.html';
+        window.location.href = 'index.html';
         return;
     }
 
@@ -65,7 +65,7 @@ document.getElementById('checkout-form').addEventListener('submit', async functi
 
 // Handle Cancel Button
 function cancelCheckout() {
-    window.location.href = 'home.html';
+    window.location.href = 'index.html';
 }
 
 // Logout Function

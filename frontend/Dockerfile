@@ -13,5 +13,5 @@ RUN npm install -g http-server
 # Expose the port to be used by the frontend
 EXPOSE 3000
 
-# Command to start the HTTP server
-CMD ["http-server", "-p", "3000"]
+# Command to start the HTTP server with home.html as the default file
+CMD ["http-server", "-p", "3000", "--entry-file", "home.html"]

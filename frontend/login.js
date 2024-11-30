@@ -37,7 +37,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
             if (data.is_seller) {
                 window.location.href = 'seller_dashboard.html';
             } else if (data.is_buyer) {
-                window.location.href = 'home.html';
+                window.location.href = 'index.html';
             } else {
                 alert('Role not recognized. Please contact support.');
             }

@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend-host
+    ports:
+      - "3000:3000" # Maps port 3000 of the container to port 3000 on the host
+    volumes:
+      - ./frontend:/app # Mounts the local frontend directory to the container's /app
+    depends_on:
+      - backend # Ensures backend starts before frontend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "8000:8000" # Maps port 8000 of the container to port 8000 on the host
+    volumes:
+      - ./backend:/app # Mounts the local backend directory to the container's /app
+    environment:
+      - DB_HOST=<your-aurora-endpoint> # Replace with your Aurora DB endpoint
+      - DB_PORT=3306 # Aurora default port
+      - DB_NAME=<your-database-name> # Replace with your database name
+      - DB_USER=<your-username> # Replace with your DB username
+      - DB_PASSWORD=<your-password> # Replace with your DB password
