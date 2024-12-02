@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
 document.getElementById('checkout-form').addEventListener('submit', async function (e) {
     e.preventDefault();
     const fullOrigin = window.location.origin;
-    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
+    const apiUrl = "http://electronic-shop-env.eba-t639vept.us-east-1.elasticbeanstalk.com";
 
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('id'); // Ensure productId is passed to the API

@@ -197,10 +197,10 @@ AWS_QUERYSTRING_AUTH = False
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AWS S3 Settings
+# AWS Settings
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_ACCESS_KEY_ID = 'xxxxxxxxxxxxx'
-AWS_SECRET_ACCESS_KEY = 'xxxxxxxxxx'
+AWS_ACCESS_KEY_ID = 'xxxxx'
+AWS_SECRET_ACCESS_KEY = 'mC5Z9vcA+S3dd0RBPREDAiTQNBEiCtk1GOgPQXBW'
 AWS_STORAGE_BUCKET_NAME = 'allproductsimages'
 AWS_REGION_NAME = 'us-east-1'
 SNS_TOPIC_ARN = 'arn:aws:sns:us-east-1:014498666344:SellerNotificationsTopic'

@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Fetch and Display Orders
 async function loadOrders() {
     const fullOrigin = window.location.origin;
-    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
+    const apiUrl = "http://electronic-shop-env.eba-t639vept.us-east-1.elasticbeanstalk.com";
     const token = localStorage.getItem('access_token');
     const orderList = document.getElementById('order-list');
 
@@ -65,7 +65,7 @@ async function loadOrders() {
 // Download Receipt Function
 async function downloadReceipt(orderId) {
     const fullOrigin = window.location.origin;
-    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
+    const apiUrl = "http://electronic-shop-env.eba-t639vept.us-east-1.elasticbeanstalk.com";
     const token = localStorage.getItem('access_token');
 
     try {
@@ -105,7 +105,7 @@ async function downloadReceipt(orderId) {
 // Set Greeting for Navbar
 async function setGreeting() {
     const fullOrigin = window.location.origin;
-    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
+    const apiUrl = "http://electronic-shop-env.eba-t639vept.us-east-1.elasticbeanstalk.com";
     const greetingElement = document.getElementById('greeting');
     const token = localStorage.getItem('access_token');
 

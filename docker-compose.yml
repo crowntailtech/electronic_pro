@@ -5,7 +5,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    image: 650251723733.dkr.ecr.us-east-1.amazonaws.com/my-frontend:latest
+    image: 717279704201.dkr.ecr.us-east-1.amazonaws.com/my-frontend:latest
     container_name: frontend-host
     ports:
       - "3000:3000" # Maps port 3000 of the container to port 3000 on the host
@@ -18,7 +18,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    image: 650251723733.dkr.ecr.us-east-1.amazonaws.com/my-backend
+    image: 717279704201.dkr.ecr.us-east-1.amazonaws.com/my-backend:latest
     container_name: backend
     ports:
       - "8000:8000" # Maps port 8000 of the container to port 8000 on the host

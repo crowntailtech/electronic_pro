@@ -1,7 +1,7 @@
 // Fetch and Display Products
 async function loadProducts() {
     const fullOrigin = window.location.origin;
-    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
+    const apiUrl = "http://electronic-shop-env.eba-t639vept.us-east-1.elasticbeanstalk.com";
     const token = localStorage.getItem('access_token');
     const productList = document.getElementById('product-list');
 
@@ -68,7 +68,7 @@ document.getElementById('product-form').addEventListener('submit', async functio
     e.preventDefault();
 
     const fullOrigin = window.location.origin;
-    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
+    const apiUrl = "http://electronic-shop-env.eba-t639vept.us-east-1.elasticbeanstalk.com";
 
     const name = document.getElementById('product-name').value;
     const description = document.getElementById('product-description').value;
@@ -120,7 +120,7 @@ document.getElementById('product-form').addEventListener('submit', async functio
 // Delete Product
 async function deleteProduct(productId) {
     const fullOrigin = window.location.origin;
-    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
+    const apiUrl = "http://electronic-shop-env.eba-t639vept.us-east-1.elasticbeanstalk.com";
     const token = localStorage.getItem('access_token');
 
     if (confirm('Are you sure you want to delete this product?')) {
@@ -170,7 +170,7 @@ function editProduct(productId, name, description, price, stock, image_url) {
 // Fetch Logged-In User Info
 async function setGreeting() {
     const fullOrigin = window.location.origin;
-    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
+    const apiUrl = "http://electronic-shop-env.eba-t639vept.us-east-1.elasticbeanstalk.com";
     const token = localStorage.getItem('access_token');
 
     if (!token) {

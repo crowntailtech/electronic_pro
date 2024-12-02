@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Set Greeting Based on User Authentication
 async function setGreeting() {
     const fullOrigin = window.location.origin;
-    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
+    const apiUrl = "http://electronic-shop-env.eba-t639vept.us-east-1.elasticbeanstalk.com";
     const greetingElement = document.getElementById('greeting');
     const token = localStorage.getItem('access_token');
 
@@ -42,7 +42,7 @@ async function setGreeting() {
 // Fetch and Display Products
 async function loadProducts() {
     const fullOrigin = window.location.origin;
-    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
+    const apiUrl = "http://electronic-shop-env.eba-t639vept.us-east-1.elasticbeanstalk.com";
     const productList = document.getElementById('product-list');
     try {
         const response = await fetch(`${apiUrl}:8000/api/products/`);

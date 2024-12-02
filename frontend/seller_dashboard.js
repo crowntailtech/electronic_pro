@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const fullOrigin = window.location.origin;
-    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
+    const apiUrl = "http://electronic-shop-env.eba-t639vept.us-east-1.elasticbeanstalk.com";
     // Check authentication and user role
     const token = localStorage.getItem('access_token');
     if (!token) {
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Fetch and display products
 async function loadProducts() {
     const fullOrigin = window.location.origin;
-    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
+    const apiUrl = "http://electronic-shop-env.eba-t639vept.us-east-1.elasticbeanstalk.com";
     const token = localStorage.getItem('access_token');
     const productList = document.getElementById('product-list');
 
@@ -102,7 +102,7 @@ async function loadProducts() {
 // Fetch and display order history
 async function loadOrderHistory() {
     const fullOrigin = window.location.origin;
-    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
+    const apiUrl = "http://electronic-shop-env.eba-t639vept.us-east-1.elasticbeanstalk.com";
     const token = localStorage.getItem('access_token');
     const orderList = document.getElementById('order-list');
 

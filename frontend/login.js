@@ -2,7 +2,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
     e.preventDefault();
 
     const fullOrigin = window.location.origin;
-    const apiUrl = fullOrigin.split(':').slice(0, 2).join(':');
+    const apiUrl = "http://electronic-shop-env.eba-t639vept.us-east-1.elasticbeanstalk.com";
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;

@@ -1,0 +1,40 @@
+name: Deploy to Elastic Beanstalk
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up AWS CLI
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1 # Replace with your AWS region if different
+
+    - name: Install dependencies
+      run: sudo apt-get install -y zip
+
+    - name: Build and package
+      run: |
+        docker-compose build
+        zip -r eb-deploy.zip . -x "*.git*" "*node_modules*" "*/__pycache__/*"
+
+    - name: Deploy to Elastic Beanstalk
+      run: |
+        aws s3 cp eb-deploy.zip s3://elasticbeanstalk-us-east-1-717279704201/eb-deploy.zip
+        aws elasticbeanstalk create-application-version \
+          --application-name electronic-shop \
+          --version-label ${{ github.sha }} \
+          --source-bundle S3Bucket=elasticbeanstalk-us-east-1-717279704201,S3Key=eb-deploy.zip
+        aws elasticbeanstalk update-environment \
+          --environment-name Electronic-shop-env \
+          --version-label ${{ github.sha }}
