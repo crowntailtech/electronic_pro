@@ -24,7 +24,6 @@ jobs:
     - name: Install Docker and Docker Compose
       run: |
         sudo apt-get update
-        sudo apt-get remove -y containerd docker.io || true
         sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
         curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
         echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
@@ -41,9 +40,14 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
+    - name: Export Secrets for Docker Compose
+      run: |
+        echo AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_IDC }} >> .env
+        echo AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEYC }} >> .env
+
     - name: Build and package
       run: |
-        docker-compose build
+        docker-compose --env-file .env build
         zip -r eb-deploy.zip . -x "*.git*" "*node_modules*" "*/__pycache__/*"
 
     - name: Deploy to Elastic Beanstalk

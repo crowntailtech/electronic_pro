@@ -25,8 +25,5 @@ services:
     volumes:
       - ./backend:/app # Mounts the local backend directory to the container's /app
     environment:
-      - DB_HOST=<your-aurora-endpoint> # Replace with your Aurora DB endpoint
-      - DB_PORT=3306 # Aurora default port
-      - DB_NAME=<your-database-name> # Replace with your database name
-      - DB_USER=<your-username> # Replace with your DB username
-      - DB_PASSWORD=<your-password> # Replace with your DB password
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
